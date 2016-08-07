@@ -162,11 +162,16 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
+    <Compile Include="DAL\ModelConfigurations\AccountConfiguration.cs" />
+    <Compile Include="DAL\ModelConfigurations\AccountLedgerConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\AccountLedger.cs" />
+    <Compile Include="Models\AccountLedgerEntry.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="ViewModels\MemberViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -181,6 +186,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Compile Include="DAL\ModelConfigurations\ApplicationUserConfiguration.cs" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
