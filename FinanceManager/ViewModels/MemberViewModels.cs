@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace FinanceManager.Models
+namespace FinanceManager.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

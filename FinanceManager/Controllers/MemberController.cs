@@ -9,20 +9,21 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FinanceManager.Models;
+using FinanceManager.ViewModels;
 
 namespace FinanceManager.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class MemberController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        public MemberController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public MemberController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +35,9 @@ namespace FinanceManager.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -120,7 +121,7 @@ namespace FinanceManager.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -155,8 +156,8 @@ namespace FinanceManager.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -175,13 +176,13 @@ namespace FinanceManager.Controllers
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public async Task<ActionResult> ConfirmEmail(int? userId, string code)
         {
             if (userId == null || code == null)
             {
                 return View("Error");
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            var result = await UserManager.ConfirmEmailAsync(userId.Value, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 

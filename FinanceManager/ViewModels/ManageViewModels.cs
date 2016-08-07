@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace FinanceManager.Models
+namespace FinanceManager.ViewModels
 {
     public class IndexViewModel
     {
